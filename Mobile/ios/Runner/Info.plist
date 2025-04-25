@@ -44,8 +44,39 @@
 
 	<key>NSCameraUsageDescription</key>
     <string>In order to scan for barcodes and QR codes, this app requires permission to access the camera.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>Morchid need your Location</string>
+	<key>PermissionGroupNotification</key>
+    <string>Morchid need your Notification</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>Morchid need your Library</string>
+	<key>NSCalendarsUsageDescription</key>
+    <string>Morchid need your Calender</string>
+	<key>NSFaceIDUsageDescription</key>
+    <string>Morchid need your Biometrics</string>
+	<key>NSBluetoothAlwaysUsageDescription</key>
+    <string>Morchid need your Bluetooth</string>
+	<key>NSContactsUsageDescription</key>
+    <string>Morchid need your Contact</string>
+	<key>NSMicrophoneUsageDescription</key>
+    <string>Morchid need your Mic</string>
 
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>comgooglemaps</string>
+      <string>baidumap</string>
+      <string>iosamap</string>
+      <string>waze</string>
+      <string>yandexmaps</string>
+      <string>yandexnavi</string>
+      <string>citymapper</string>
+      <string>mapswithme</string>
+      <string>osmandmaps</string>
+      <string>dgis</string>
+      <string>qqmap</string>
+      <string>here-location</string>
 
+    </array>
 
 
 	<key>UILaunchStoryboardName</key>

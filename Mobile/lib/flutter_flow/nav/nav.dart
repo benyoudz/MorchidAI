@@ -40,17 +40,42 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => HomePageWidget(),
+      errorBuilder: (context, state) => appStateNotifier.showSplashImage
+          ? Builder(
+              builder: (context) => Container(
+                color: Color(0xFF8FDCB2),
+                child: Image.asset(
+                  'assets/images/Group_34613.png',
+                  fit: BoxFit.contain,
+                ),
+              ),
+            )
+          : NavBarPage(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => HomePageWidget(),
+          builder: (context, _) => appStateNotifier.showSplashImage
+              ? Builder(
+                  builder: (context) => Container(
+                    color: Color(0xFF8FDCB2),
+                    child: Image.asset(
+                      'assets/images/Group_34613.png',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                )
+              : NavBarPage(),
         ),
         FFRoute(
           name: HomePageWidget.routeName,
           path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'HomePage')
+              : NavBarPage(
+                  initialPage: 'HomePage',
+                  page: HomePageWidget(),
+                ),
         ),
         FFRoute(
           name: SignWidget.routeName,
@@ -60,22 +85,44 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: ProfileWidget.routeName,
           path: ProfileWidget.routePath,
-          builder: (context, params) => ProfileWidget(),
+          builder: (context, params) => params.isEmpty
+              ? NavBarPage(initialPage: 'profile')
+              : NavBarPage(
+                  initialPage: 'profile',
+                  page: ProfileWidget(),
+                ),
         ),
         FFRoute(
           name: ScanWidget.routeName,
           path: ScanWidget.routePath,
-          builder: (context, params) => ScanWidget(),
+          builder: (context, params) =>
+              params.isEmpty ? NavBarPage(initialPage: 'scan') : ScanWidget(),
         ),
         FFRoute(
           name: QresultWidget.routeName,
           path: QresultWidget.routePath,
-          builder: (context, params) => QresultWidget(),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: QresultWidget(
+              staid: params.getParam(
+                'staid',
+                ParamType.String,
+              ),
+            ),
+          ),
         ),
         FFRoute(
           name: SearchhomeWidget.routeName,
           path: SearchhomeWidget.routePath,
-          builder: (context, params) => SearchhomeWidget(),
+          builder: (context, params) => NavBarPage(
+            initialPage: '',
+            page: SearchhomeWidget(),
+          ),
+        ),
+        FFRoute(
+          name: SupportWidget.routeName,
+          path: SupportWidget.routePath,
+          builder: (context, params) => SupportWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
